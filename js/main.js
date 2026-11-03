@@ -1,16 +1,17 @@
 /**
- * THATIANY SCHULZ & SCHULZ DESIGÑ — INTERACTIVE ENGINE
- * Clean Vanilla JavaScript (ES6+) for Accessibility, Modals & Persona Switching
+ * SCHULZ DESIGÑ — INTERACTIVE ENGINE
+ * Estúdio de Design & Presença Digital | Thatiany Schulz
+ * Clean Vanilla JavaScript (ES6+) for Accessibility, Modals, Filter & Lenis Scroll
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   // --------------------------------------------------------------------------
-  // 0. LENIS SMOOTH SCROLL (FÍSICA TÁTIL DE AGÊNCIA DE LUXO)
+  // 0. LENIS SMOOTH SCROLL (FÍSICA TÁTIL EDITORIAL)
   // --------------------------------------------------------------------------
   let lenisInstance = null;
   if (typeof Lenis !== 'undefined') {
     lenisInstance = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
@@ -39,8 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
   // --------------------------------------------------------------------------
-  // 1. HEADER SCROLL & ACTIVE SCROLLSPY
+  // 1. HEADER SCROLL & SCROLLSPY
   // --------------------------------------------------------------------------
   const headerNav = document.querySelector('.header-nav');
   const navLinks = document.querySelectorAll('.nav-link');
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollY = window.pageYOffset;
 
     // Header background blur on scroll
-    if (scrollY > 50) {
+    if (scrollY > 40) {
       headerNav.classList.add('scrolled');
     } else {
       headerNav.classList.remove('scrolled');
@@ -85,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', () => {
       const isOpen = mobileToggle.classList.toggle('open');
-      navMenu.classList.toggle('open');
+      navMenu.classList.toggle('active');
       mobileToggle.setAttribute('aria-expanded', isOpen);
     });
 
@@ -93,16 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileToggle.classList.remove('open');
-        navMenu.classList.remove('open');
+        navMenu.classList.remove('active');
         mobileToggle.setAttribute('aria-expanded', 'false');
       });
     });
 
     // Close with Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+      if (e.key === 'Escape' && navMenu.classList.contains('active')) {
         mobileToggle.classList.remove('open');
-        navMenu.classList.remove('open');
+        navMenu.classList.remove('active');
         mobileToggle.setAttribute('aria-expanded', 'false');
         mobileToggle.focus();
       }
@@ -110,35 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 3. STRATEGIC PERSONA SWITCHER (GERAL / RECRUTADOR / CLIENTE)
-  // --------------------------------------------------------------------------
-  const personaButtons = document.querySelectorAll('.persona-btn');
-  const body = document.body;
-
-  personaButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const mode = btn.getAttribute('data-mode');
-
-      personaButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      body.classList.remove('persona-all', 'persona-recruiter', 'persona-client');
-
-      if (mode === 'recruiter') {
-        body.classList.add('persona-recruiter');
-        showToast('🎯 Modo Recrutador ativado: métricas de UX, Design Systems e CV em destaque.');
-      } else if (mode === 'client') {
-        body.classList.add('persona-client');
-        showToast('💼 Modo Comercial ativado: serviços da Schulz Desigñ e proposta rápida destacados.');
-      } else {
-        body.classList.add('persona-all');
-        showToast('✨ Visão geral ativada.');
-      }
-    });
-  });
-
-  // --------------------------------------------------------------------------
-  // 4. PROJECTS FILTER TABS
+  // 3. PROJECTS FILTER TABS
   // --------------------------------------------------------------------------
   const filterButtons = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
@@ -152,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       projectCards.forEach(card => {
         const category = card.getAttribute('data-category');
-        if (filterValue === 'all' || category === filterValue || category.includes(filterValue)) {
+        if (filterValue === 'all' || category === filterValue || (category && category.includes(filterValue))) {
           card.style.display = 'flex';
           setTimeout(() => {
             card.style.opacity = '1';
@@ -170,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------------------------------
-  // 5. CASE STUDY MODAL DIALOGS (ACCESSIBLE)
+  // 4. ACCESSIBLE CASE STUDY MODAL
   // --------------------------------------------------------------------------
   const modalOverlay = document.getElementById('caseModalOverlay');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
@@ -179,65 +153,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Case Data Dictionary
   const casesData = {
+    'flordibanho': {
+      tag: 'Identidade Visual • E-commerce • Embalagens',
+      title: 'Flor di Banho — Saboaria Artesanal & Loja Virtual',
+      banner: 'assets/images/flor-di-banho-preview.jpg',
+      challenge: 'A Flor di Banho necessitava de um posicionamento de marca acolhedor e visualmente refinado para se destacar no segmento de cosméticos naturais na Baixada Santista e em todo o Brasil.',
+      process: 'Concepção do conceito de branding, paleta cromática pastel e aconchegante, tipografia personalizada, design de embalagens e rótulos técnicos para impressão, criação da mascote Flora em 3D e estruturação da loja virtual na Nuvemshop.',
+      metrics: [
+        { val: '+35%', label: 'Crescimento em vendas online diretas' },
+        { val: '100%', label: 'Ecossistema visual padronizado' },
+        { val: 'Omnichannel', label: 'Embalagens físicas e e-commerce' }
+      ],
+      solution: 'Identidade visual encantadora, catálogo digital completo, rótulos personalizados e integração de frete e pagamento online com checkout simplificado.',
+      liveUrl: 'https://flordibanho.lojavirtualnuvem.com.br/',
+      liveLabel: 'Acessar Loja Virtual Oficial'
+    },
     'vagation': {
-      tag: 'UI/UX & Mobile App • Mapa Colaborativo',
+      tag: 'UI/UX Design • Design System • Mobilidade Urbana',
       title: 'Vagation — Otimização de Vagas Urbanas em Tempo Real',
       banner: 'assets/images/vagation-mockup.svg',
-      challenge: 'Encontrar vagas de estacionamento nas grandes cidades consome tempo, gera estresse e amplia a emissão de carbono. O desafio foi criar uma experiência intuitiva que conecte motoristas em trânsito a vagas liberadas por outros usuários e estabelecimentos comerciais.',
-      process: 'Utilização da abordagem de User Research com entrevistas a motoristas urbanos e donos de estacionamentos locais. Construção de personas, mapas de empatia e fluxogramas de decisão rápida. Prototipagem em baixa e alta fidelidade no Figma, estruturando um Design System completo com tokens de acessibilidade e contraste para visualização sob luz solar direta.',
+      challenge: 'Encontrar vagas nas cidades consome tempo, gera estresse e amplia a emissão de carbono. O desafio foi criar uma experiência intuitiva que conecte motoristas a vagas disponíveis em tempo real.',
+      process: 'Pesquisa com motoristas e comerciantes locais. Prototipagem navegável em baixa e alta fidelidade no Figma, estruturando um Design System completo com conformidade de contraste WCAG AA para visualização sob luz solar direta.',
       metrics: [
         { val: '-45%', label: 'Tempo médio de busca de vagas' },
         { val: '80%', label: 'Aprovação de wireframes na 1ª rodada' },
-        { val: 'WCAG AA', label: 'Conformidade de contraste no mapa' }
+        { val: 'WCAG AA', label: 'Conformidade de acessibilidade' }
       ],
-      solution: 'Interface limpa com mapa interativo, pins codificados por disponibilidade de cores acessíveis, busca preditiva por geolocalização e sistema de reserva instantânea com confirmação de rota com 1 clique.',
+      solution: 'Interface com mapa dinâmico, pins codificados por disponibilidade de cores acessíveis, busca preditiva e sistema de reserva rápida.',
       liveUrl: 'https://www.figma.com/proto/oEWsosNTJm387iGdGd3kN7/Vagation-App?page-id=0%3A1&node-id=224-741&p=f&viewport=-931%2C713%2C0.36&t=EsL6zsdcU3TJ7YIp-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=10%3A572&show-proto-sidebar=1',
       liveLabel: 'Abrir Protótipo Interativo no Figma'
     },
     'gonzaga': {
-      tag: 'Double Diamond • Redesign de App Imobiliário',
-      title: 'Gonzaga Imóveis — Experiência de Busca e Conversão Fluida',
+      tag: 'Double Diamond • Redesign de Portal Imobiliário',
+      title: 'Gonzaga Imóveis — Busca Fluida e Agendamento em Santos',
       banner: 'assets/images/gonzaga-mockup.svg',
-      challenge: 'O aplicativo anterior sofria com excesso de formulários, filtros confusos e alta taxa de abandono nas buscas por imóveis residenciais e comerciais em Santos/SP.',
-      process: 'Aplicação da metodologia Double Diamond: imersão com compradores e corretores, definição dos gargalos de usabilidade, ideação com benchmarking do setor imobiliário global e prototipagem com testes de usabilidade iterativos no Figma.',
+      challenge: 'O portal anterior sofria com excesso de campos, filtros desordenados e abandono de visitantes na busca por imóveis na Baixada Santista.',
+      process: 'Aplicação da metodologia Double Diamond: imersão com compradores e corretores, redesenho da arquitetura de informação e prototipagem com testes de usabilidade no Figma.',
       metrics: [
-        { val: '+60%', label: 'Eficiência nas buscas com novos filtros' },
-        { val: '+25%', label: 'Leads qualificados para corretores' },
-        { val: '100%', label: 'Componentização escalável no Figma' }
+        { val: '+60%', label: 'Eficiência de busca com novos filtros' },
+        { val: '+25%', label: 'Leads qualificados para os corretores' },
+        { val: '100%', label: 'Design System componentizado no Figma' }
       ],
-      solution: 'Redesign total da arquitetura de informação: visualização em lista e mapa sincronizados, card de imóvel com especificações instantâneas (área, quartos, vagas, condomínio), botão de agendamento de visita via WhatsApp e lista de favoritos.',
+      solution: 'Redesenho total da busca: listagem e mapa sincronizados, card com especificações instantâneas e botão de agendamento de visita direto pelo WhatsApp.',
       liveUrl: 'https://www.figma.com/proto/T4s0XryrxKQWjKF0qE5wx5/Gonzaga-Im%C3%B3veis?page-id=0%3A1&node-id=103-77&p=f&viewport=910%2C859%2C0.09&t=PmvbCeIbRf9Ej8D8-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=104%3A140',
       liveLabel: 'Abrir Protótipo Interativo no Figma'
     },
-    'flordibanho': {
-      tag: 'Identidade Visual Completa • E-commerce • Mascote 3D',
-      title: 'Flor di Banho — Cosméticos Artesanais & Loja Virtual',
-      banner: 'assets/images/flor-di-banho-preview.jpg',
-      challenge: 'A Flor di Banho precisava de uma marca com alma acolhedora e estética profissional para se posicionar com destaque no mercado de saboaria e cosméticos artesanais na Baixada Santista e em todo o Brasil.',
-      process: 'Concepção do conceito de branding, paleta cromática pastel e aconchegante, tipografia personalizada, design de embalagens e rótulos com especificações técnicas para impressão, criação da mascote Flora em 3D e montagem da loja virtual completa na plataforma Nuvemshop.',
-      metrics: [
-        { val: '100%', label: 'Ecossistema visual unificado' },
-        { val: '+35%', label: 'Aumento em vendas online no lançamento' },
-        { val: 'Omnichannel', label: 'Embalagens, social media e e-commerce' }
-      ],
-      solution: 'Identidade visual encantadora, catálogo digital de produtos, rótulos personalizados, vídeos com a mascote Flora e integração de pagamento e frete online.',
-      liveUrl: 'https://flordibanho.lojavirtualnuvem.com.br/',
-      liveLabel: 'Acessar Loja Virtual Oficial'
-    },
     'branding': {
-      tag: 'Branding • Design Gráfico • Materiais Impressos',
-      title: 'Identidades Visuais & Cartões de Visita Estratégicos',
+      tag: 'Identidade Visual • Tipografia • Papelaria Nobre',
+      title: 'Identidades Visuais para Negócios & Cartões Estratégicos',
       banner: 'assets/images/branding-mockup.svg',
-      challenge: 'Profissionais autônomos e empresas de diversos segmentos (advocacia, mecânica, engenharia, cosméticos) necessitavam de posicionamento visual marcante que transmitisse credibilidade imediata no primeiro contato físico e digital.',
-      process: 'Entrevistas de alinhamento de público-alvo, criação de símbolos e logotipos únicos, seleção de paletas funcionais e tipografia, preparação de mockups realistas e fechamento rigoroso de arquivos em CMYK para acabamentos especiais (hot stamping, verniz localizado, laminação fosca).',
+      challenge: 'Profissionais autônomos e empresas de diversos segmentos necessitavam de posicionamento visual marcante para transmitir credibilidade imediata.',
+      process: 'Alinhamento de público-alvo, desenho de símbolos e tipografia personalizada, seleção cromática funcional e preparação técnica de arquivos para acabamentos gráficos especiais.',
       metrics: [
-        { val: '15+', label: 'Identidades e projetos entregues' },
-        { val: '95%', label: 'Satisfação dos clientes' },
-        { val: '0%', label: 'Erros de fechamento gráfico' }
+        { val: '15+', label: 'Projetos autorais entregues' },
+        { val: '95%', label: 'Satisfação comprovada' },
+        { val: '0%', label: 'Erros em fechamento de arquivos' }
       ],
-      solution: 'Materiais com estética refinada que diferenciam os clientes da concorrência e fortalecem o valor percebido de seus serviços.',
-      liveUrl: '#contato',
-      liveLabel: 'Solicitar Projeto de Identidade'
+      solution: 'Marcas memoráveis e papelarias institucionais que posicionam o negócio com autoridade imediata frente à concorrência.',
+      liveUrl: 'cartoes.html',
+      liveLabel: 'Ver Galeria de Cartões e Marcas'
     }
   };
 
@@ -258,27 +232,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Metrics container
     const metricsContainer = document.getElementById('modalCaseMetrics');
     metricsContainer.innerHTML = '';
+
     data.metrics.forEach(m => {
-      const item = document.createElement('div');
-      item.className = 'modal-metric-item';
-      item.innerHTML = `<strong>${m.val}</strong><span>${m.label}</span>`;
-      metricsContainer.appendChild(item);
+      const card = document.createElement('div');
+      card.className = 'modal-metric-card';
+      card.innerHTML = `
+        <div class="modal-metric-val">${m.val}</div>
+        <div class="modal-metric-label">${m.label}</div>
+      `;
+      metricsContainer.appendChild(card);
     });
 
-    // Live CTA Button
-    const liveCta = document.getElementById('modalCaseLiveCta');
-    liveCta.href = data.liveUrl;
-    liveCta.textContent = data.liveLabel;
-    if (data.liveUrl.startsWith('http')) {
-      liveCta.target = '_blank';
-      liveCta.rel = 'noopener noreferrer';
-    } else {
-      liveCta.removeAttribute('target');
-      liveCta.removeAttribute('rel');
-    }
+    const liveBtn = document.getElementById('modalCaseLiveBtn');
+    liveBtn.href = data.liveUrl;
+    liveBtn.textContent = `${data.liveLabel} ↗`;
 
     modalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+
     modalCloseBtn.focus();
   };
 
@@ -317,39 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------------------------------
-  // 6. INTERACTIVE PROJECT BRIEFING / PROPOSAL SIMULATOR
-  // --------------------------------------------------------------------------
-  const quoteForm = document.getElementById('quoteSimulatorForm');
-
-  if (quoteForm) {
-    quoteForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const projectType = document.getElementById('projectType').value;
-      const projectTimeline = document.getElementById('projectTimeline').value;
-      const clientName = document.getElementById('clientName').value.trim() || 'Cliente';
-      const projectDesc = document.getElementById('projectDesc').value.trim() || 'Sem descrição adicional.';
-
-      const messageText = `Olá, Thatiany! Vim pelo seu site/portfólio e gostaria de solicitar uma proposta para meu projeto.
-
-📌 *Tipo de Projeto:* ${projectType}
-⏱️ *Prazo Desejado:* ${projectTimeline}
-👤 *Meu Nome:* ${clientName}
-📝 *Detalhes:* ${projectDesc}
-
-Podemos conversar sobre viabilidade e próximos passos?`;
-
-      const whatsappNumber = '5513991814547';
-      const encodedMsg = encodeURIComponent(messageText);
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMsg}`;
-
-      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-      showToast('🚀 Redirecionando para o WhatsApp de Thatiany Schulz...');
-    });
-  }
-
-  // --------------------------------------------------------------------------
-  // 7. COPY TO CLIPBOARD UTILITY WITH TOAST NOTIFICATION
+  // 5. CLIPBOARD COPY UTILITY & TOAST NOTIFICATION
   // --------------------------------------------------------------------------
   const copyButtons = document.querySelectorAll('[data-copy]');
 
@@ -386,9 +325,7 @@ Podemos conversar sobre viabilidade e próximos passos?`;
     document.body.removeChild(tempInput);
   }
 
-  // --------------------------------------------------------------------------
-  // 8. TOAST NOTIFICATION SYSTEM
-  // --------------------------------------------------------------------------
+  // Toast System
   let toastTimeout = null;
   const toastElement = document.getElementById('toastNotice');
 
@@ -404,29 +341,6 @@ Podemos conversar sobre viabilidade e próximos passos?`;
 
     toastTimeout = setTimeout(() => {
       toastElement.classList.remove('show');
-    }, 3800);
-  }
-
-  // --------------------------------------------------------------------------
-  // 9. SUBTLE SCROLL REVEAL VIA INTERSECTION OBSERVER
-  // --------------------------------------------------------------------------
-  const revealElements = document.querySelectorAll('.reveal');
-
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
-    });
-
-    revealElements.forEach(el => observer.observe(el));
-  } else {
-    revealElements.forEach(el => el.classList.add('revealed'));
+    }, 3500);
   }
 });
