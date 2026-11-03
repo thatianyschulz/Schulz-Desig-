@@ -5,6 +5,41 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // --------------------------------------------------------------------------
+  // 0. LENIS SMOOTH SCROLL (FÍSICA TÁTIL DE AGÊNCIA DE LUXO)
+  // --------------------------------------------------------------------------
+  let lenisInstance = null;
+  if (typeof Lenis !== 'undefined') {
+    lenisInstance = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.5,
+    });
+
+    function raf(time) {
+      lenisInstance.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Navegação suave com Lenis ao clicar em links âncora
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            lenisInstance.scrollTo(targetEl, { offset: -70 });
+          }
+        }
+      });
+    });
+  }
+  // --------------------------------------------------------------------------
   // 1. HEADER SCROLL & ACTIVE SCROLLSPY
   // --------------------------------------------------------------------------
   const headerNav = document.querySelector('.header-nav');
