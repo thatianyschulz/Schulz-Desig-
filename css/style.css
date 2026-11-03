@@ -2045,3 +2045,495 @@ body.persona-client .client-highlight {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* --------------------------------------------------------------------------
+   17. SEÇÃO DE SOLUÇÕES & TABELA DE PREÇOS (SCHULZ DESIGÑ)
+   -------------------------------------------------------------------------- */
+.pricing-section {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, var(--bg-deep) 0%, #0a0d15 100%);
+  position: relative;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+
+.pricing-card-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card-box:hover {
+  transform: translateY(-6px);
+  border-color: var(--cyan);
+  box-shadow: 0 15px 35px -10px rgba(0, 210, 255, 0.2);
+}
+
+.pricing-card-box.highlight {
+  border-color: var(--orange);
+  background: linear-gradient(180deg, rgba(255, 122, 0, 0.06) 0%, var(--bg-card) 100%);
+  box-shadow: 0 15px 35px -10px rgba(255, 122, 0, 0.25);
+}
+
+.pricing-badge-popular {
+  position: absolute;
+  top: -12px;
+  right: 24px;
+  background: linear-gradient(135deg, var(--orange) 0%, var(--magenta) 100%);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+
+.pricing-tier-name {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-tier-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  min-height: 44px;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-value-wrap {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.pricing-amount {
+  font-family: 'Space Grotesk', var(--font-main);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.pricing-amount span {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.pricing-installments {
+  font-size: 0.8rem;
+  color: var(--lime);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.pricing-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem 0;
+  flex-grow: 1;
+}
+
+.pricing-features-list li {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.45;
+}
+
+.pricing-features-list li svg {
+  flex-shrink: 0;
+  color: var(--cyan);
+  margin-top: 2px;
+}
+
+.pricing-card-box.highlight .pricing-features-list li svg {
+  color: var(--orange);
+}
+
+.pricing-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.pricing-btn.btn-cyan {
+  background: rgba(0, 210, 255, 0.12);
+  color: var(--cyan);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+}
+
+.pricing-btn.btn-cyan:hover {
+  background: var(--cyan);
+  color: #07080c;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+}
+
+.pricing-btn.btn-orange {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--magenta) 100%);
+  color: #ffffff;
+  border: none;
+}
+
+.pricing-btn.btn-orange:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 122, 0, 0.35);
+}
+
+.pricing-maintenance-bar {
+  margin-top: 2.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: 14px;
+  padding: 1.8rem 2.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   18. SEÇÃO INSTAGRAM FEED (@SCHULZ.DESIGN)
+   -------------------------------------------------------------------------- */
+.instagram-section {
+  padding: 6rem 0;
+  background: var(--bg-surface);
+  position: relative;
+  border-top: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.instagram-profile-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: 16px;
+  padding: 1.8rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+  box-shadow: var(--shadow-md);
+}
+
+.instagram-avatar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.instagram-avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.instagram-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #000;
+  object-fit: cover;
+  border: 2px solid var(--bg-card);
+}
+
+.instagram-meta h4 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.instagram-verified-badge {
+  color: var(--cyan);
+}
+
+.instagram-handle {
+  font-size: 0.95rem;
+  color: var(--cyan);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.instagram-bio {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  max-width: 540px;
+}
+
+.btn-instagram-follow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #ffffff;
+  padding: 0.9rem 1.8rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  white-space: nowrap;
+}
+
+.btn-instagram-follow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(220, 39, 67, 0.4);
+}
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+
+.insta-post-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.insta-post-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--magenta);
+  box-shadow: 0 20px 40px -10px rgba(224, 36, 195, 0.25);
+}
+
+.insta-media-frame {
+  height: 240px;
+  position: relative;
+  overflow: hidden;
+  background: #0f1320;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.insta-media-frame.bg-gradient-1 {
+  background: linear-gradient(135deg, #0b0f19 0%, #1a1528 50%, #2e1030 100%);
+}
+
+.insta-media-frame.bg-gradient-2 {
+  background: linear-gradient(135deg, #0a1320 0%, #0d2838 50%, #083c44 100%);
+}
+
+.insta-media-frame.bg-gradient-3 {
+  background: linear-gradient(135deg, #1c130d 0%, #301f0c 50%, #452408 100%);
+}
+
+.insta-media-frame.bg-gradient-4 {
+  background: linear-gradient(135deg, #180d22 0%, #260f38 50%, #381048 100%);
+}
+
+.insta-media-frame.bg-gradient-5 {
+  background: linear-gradient(135deg, #0c1815 0%, #122c24 50%, #114231 100%);
+}
+
+.insta-media-frame.bg-gradient-6 {
+  background: linear-gradient(135deg, #1f0f18 0%, #3a1525 50%, #52182c 100%);
+}
+
+.insta-post-visual-content {
+  padding: 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.insta-post-headline {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  line-height: 1.3;
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.insta-post-pill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(7, 8, 12, 0.85);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.insta-post-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 8, 12, 0.88);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.insta-post-card:hover .insta-post-overlay {
+  opacity: 1;
+}
+
+.insta-overlay-stats {
+  display: flex;
+  gap: 18px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.insta-overlay-btn {
+  background: #ffffff;
+  color: #07080c;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.insta-post-caption-box {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.insta-caption-text {
+  font-size: 0.86rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.insta-tags {
+  font-size: 0.78rem;
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   19. BOTÃO FLUTUANTE DO WHATSAPP
+   -------------------------------------------------------------------------- */
+.floating-whatsapp-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+}
+
+.floating-whatsapp-btn:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.65);
+}
+
+.floating-whatsapp-btn::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.5);
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+@media (max-width: 992px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+  .instagram-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .instagram-profile-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .instagram-avatar-wrap {
+    flex-direction: column;
+  }
+  .pricing-maintenance-bar {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .instagram-grid {
+    grid-template-columns: 1fr;
+  }
+}
