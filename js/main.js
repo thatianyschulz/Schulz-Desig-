@@ -212,6 +212,21 @@ document.addEventListener('DOMContentLoaded', () => {
       solution: 'Marcas memoráveis e papelarias institucionais que posicionam o negócio com autoridade imediata frente à concorrência.',
       liveUrl: 'cartoes.html',
       liveLabel: 'Ver Galeria de Cartões e Marcas'
+    },
+    'pizzaria': {
+      tag: 'Gastronomia • Cardápio Estratégico • QR Code',
+      title: 'Pizzaria 4 Irmãos — Cardápio, Folder & Acesso Online',
+      banner: 'assets/images/branding-mockup.svg',
+      challenge: 'A Pizzaria 4 Irmãos necessitava modernizar seu atendimento físico e delivery, destacando produtos de maior margem e facilitando o acesso ao cardápio sem custos repetitivos de reimpressão.',
+      process: 'Hierarquização visual de itens e sabores especiais, elaboração de folder promocional para entrega no bairro e geração de QR Code inteligente para acesso instantâneo ao cardápio digital via celular.',
+      metrics: [
+        { val: '+20%', label: 'Aumento no ticket médio dos pedidos' },
+        { val: '100%', label: 'Acesso instantâneo via QR Code' },
+        { val: '0', label: 'Necessidade de baixar apps pesados' }
+      ],
+      solution: 'Cardápio moderno, folder promocional de alta conversão e QR Code configurado para celular.',
+      liveUrl: '#contato',
+      liveLabel: 'Solicitar Projeto Gastronômico'
     }
   };
 
